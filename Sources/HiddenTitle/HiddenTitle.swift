@@ -15,21 +15,25 @@ private struct HiddenTitleModifier: ViewModifier {
         if hidden {
             #if os(iOS)
             if #available(iOS 26.0, *) {
-                content.toolbar {
-                    ToolbarItem(placement: .title) {
-                        Color.clear
-                            .frame(width: 0, height: 0)
-                            .accessibilityHidden(true)
+                content
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar {
+                        ToolbarItem(placement: .title) {
+                            Color.clear
+                                .frame(width: 0, height: 0)
+                                .accessibilityHidden(true)
+                        }
                     }
-                }
             } else {
-                content.toolbar {
-                    ToolbarItem(placement: .principal) {
-                        Color.clear
-                            .frame(width: 0, height: 0)
-                            .accessibilityHidden(true)
+                content
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar {
+                        ToolbarItem(placement: .principal) {
+                            Color.clear
+                                .frame(width: 0, height: 0)
+                                .accessibilityHidden(true)
+                        }
                     }
-                }
             }
             #else
             content.toolbar {
